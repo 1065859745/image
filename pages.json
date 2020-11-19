@@ -1,0 +1,57 @@
+{
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false,
+			"app-plus":{
+				"titleNView":false
+			}
+		}
+	}, {
+		"path": "pages/result/result",
+		"style": {
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/currency/currency",
+		"style": {
+			"navigationBarTitleText": "货币识别",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/dish/dish",
+		"style": {
+			"navigationBarTitleText": "菜品识别",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/car/car",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/detail/detail",
+		"style": {
+			"navigationBarTitleText": "百度百科",
+			"enablePullDownRefresh": false
+		}
+	}    ,{
+            "path" : "pages/baidushitu/baidushitu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "百度识图",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarBackgroundColor": "#007AFF"
+	}
+}
