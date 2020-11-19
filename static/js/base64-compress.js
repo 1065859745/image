@@ -6,9 +6,7 @@ export function base64Compress(base64, callback) {
 		var ctx = canvas.getContext("2d")
 		canvas.width = this.width
 		canvas.height = this.height
-		ctx.clearRect(0, 0, canvas.width, canvas.height)
 		ctx.drawImage(this, 0, 0, canvas.width, canvas.height)
-		var newBase64 = canvas.toDataURL("image/jpeg", 1/(base64.length/96666))
-		callback(newBase64)
+		callback(canvas.toDataURL("image/jpeg", 94444/base64.length))
 	}
 }
