@@ -5,7 +5,7 @@
 		</view>
 		<uni-section title="识别结果" type='line'></uni-section>
 		<uni-list>
-			<uni-list-item v-show="result.currencyName" :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +result.currencyName)"
+			<uni-list-item v-show="result.currencyName" :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +result.currencyName)+'&title=百度百科'"
 			 :title="result.currencyName" :note="result.year">
 				<view class="list-footer" slot='footer'>
 					<uni-tag circle :text="result.currencyDenomination?result.currencyDenomination:''"></uni-tag>

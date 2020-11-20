@@ -38,7 +38,7 @@
 	}, {
 		"path": "pages/detail/detail",
 		"style": {
-			"navigationBarTitleText": "百度百科",
+			"navigationBarTitleText": "",
 			"enablePullDownRefresh": false
 		}
 	}    ,{

@@ -45,7 +45,7 @@
 				let url = 'https://youjia.baidu.com'
 				url += (getApp().globalData.isPhone && series_id) ? ('/pages/view/index?name=' + name + '&serid=' + series_id) : (
 					'/view/search?query=' + name)
-				return '../detail/detail?url=' + encodeURIComponent(url)
+				return '../detail/detail?url=' + encodeURIComponent(url)+'&title=有驾'
 			},
 			chooseImage() {
 				uni.chooseImage({

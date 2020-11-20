@@ -12,6 +12,9 @@
 			}
 		},
 		onLoad(option) {
+			uni.setNavigationBarTitle({
+				title: option.title
+			})
 			this.src = option.url? decodeURIComponent(option.url) : (getApp().globalData.isPhone? 'https://graph.baidu.com/view/home' : 'https://graph.baidu.com/pcpage/index?tpl_from=pc')
 		},
 		methods: {

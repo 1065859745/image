@@ -5,7 +5,7 @@
 		</view>
 		<uni-section title='识别结果' type='line'></uni-section>
 		<uni-list>
-			<uni-list-item :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +item.name)" :title="item.name" :note="'相似度: '+ item.probability" showArrow clickable :key="index" v-for="(item, index) in result">
+			<uni-list-item :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +item.name)+'&title=百度百科'" :title="item.name" :note="'相似度: '+ item.probability" showArrow clickable :key="index" v-for="(item, index) in result">
 				<view class="list-footer" slot='footer'>
 					<uni-tag circle :text="typeof item.calorie==='undefined'? '暂无数据':item.calorie+' 卡路里'"></uni-tag>
 				</view>

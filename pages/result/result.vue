@@ -5,7 +5,7 @@
 		</view>
 		<uni-section title="识别结果" type="line"></uni-section>
 		<uni-list>
-			<uni-list-item showArrow clickable :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +(item.keyword||item.name))"
+			<uni-list-item showArrow clickable :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +(item.keyword||item.name))+'&title=百度百科'"
 			 :note="'相似度: '+(item.score||item.probability)" :title="item.keyword||item.name" v-for="(item, index) in result"
 			 :key="index">
 			</uni-list-item>
