@@ -85,6 +85,7 @@
     "h5" : {
         "router" : {
             "base" : ""
-        }
+        },
+        "domain" : "woligiao.top"
     }
 }

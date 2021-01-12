@@ -3,7 +3,6 @@
 		globalData: {
 			access_token: '',
 			proxy_server:'',
-			isPhone:false
 		},
 		onLaunch: function() {
 			// 添加百度SK、AK

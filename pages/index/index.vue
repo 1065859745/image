@@ -1,7 +1,7 @@
 <template>
-	<view>
+	<view style="display: flex;flex-direction: column;height: 100vh;">
 		<view class="status-bar"></view>
-		<view class="footer" :style="{height:windowHeight}">
+		<view class="footer">
 			<view class="content" v-for="(item,index) in list" @click="chooseImage(item.name,item.goPage,item.apiUrl)" :key="index">
 				<view class="iconfont" :class="item.font" :style="{fontSize: '72px'}"></view>
 				{{item.name}}
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-	typeof plus
 	export default {
 		data() {
 			const list = [{
@@ -50,17 +49,6 @@
 				list: list,
 			}
 		},
-		onLoad() {
-			uni.getSystemInfo({
-				success: res => {
-					this.windowHeight = (res.windowHeight - res.statusBarHeight - res.windowHeight * 0.08) + 'px'
-					getApp().globalData.isPhone = res.windowHeight > res.windowWidth ? true : false
-				},
-				fail: () => {
-					this.windowHeight = '100%'
-				}
-			})
-		},
 		methods: {
 			chooseImage(title, goPage, apiUrl) {
 				uni.chooseImage({
@@ -84,25 +72,23 @@
 
 <style>
 	.status-bar {
-		background-color: #007AFF;
+		background-color: #2f94ff;
 		height: var(--status-bar-height);
 	}
 
 	.footer {
-		padding: 3vh 8vw 4vh 8vw;
 		display: flex;
 		flex-wrap: wrap;
+		flex: 1;
 	}
 
 	.content {
-		min-width: 33%;
+		min-width: 96px;
 		display: flex;
 		flex: 1;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		padding: 0 32rpx;
-		color: #777;
-		font-size: 28rpx;
+		padding: 10px 16px;
 	}
 </style>
