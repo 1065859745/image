@@ -2,13 +2,12 @@
 	export default {
 		globalData: {
 			access_token: '',
-			proxy_server:'',
-			isPhone:false
+			proxy_server:'https://woligiao.top:8080',
 		},
 		onLaunch: function() {
 			// 添加百度SK、AK
-			const SecretKey = ''
-			const APIKey = ''
+			const SecretKey = 'Ag4enwGKhicwyrZjdHW8G3BLmYam9stj'
+			const APIKey = 'rIsHLARsSbUUa9XpiCyHx3KL'
 			// 获取access_token
 			// 安卓可以直接发起请求获取， h5平台需要另起一个反向代理服务解决跨域问题
 			let address = typeof plus === 'object'? 'https://aip.baidubce.com' : getApp().globalData.proxy_server
