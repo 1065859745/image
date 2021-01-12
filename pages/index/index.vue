@@ -2,12 +2,12 @@
 	<view style="display: flex;flex-direction: column;height: 100vh;">
 		<view class="status-bar"></view>
 		<view class="footer">
-			<view class="content" v-for="(item,index) in list" @click="chooseImage(item.name,item.goPage,item.apiUrl)" :key="index">
-				<view class="iconfont" :class="item.font" :style="{fontSize: '72px'}"></view>
+			<view class="content" v-for="(item,index) in list" :key="index">
+				<view class="iconfont" :class="item.font" @click="chooseImage(item.name,item.goPage,item.apiUrl)" :style="{fontSize: '82px'}"></view>
 				{{item.name}}
 			</view>
-			<view class="content" @click="navigateTo">
-				<image src="../../static/image/baidushitu.png" style="height: 72px;" mode="heightFix"></image>
+			<view class="content" style="min-width: 214px;">
+				<image @click="navigateTo" src="../../static/image/baidushitu.png" style="height: 72px;" mode="heightFix"></image>
 				百度识图
 			</view>
 		</view>

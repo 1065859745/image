@@ -1,16 +1,17 @@
 <template>
 	<view class="container">
-		<view class="image">
-			<image @click="chooseImage" :src="tempFilePath" mode="aspectFit"></image>
+		<view class="resultList">
+			<uni-section title='识别结果' type='line'></uni-section>
+			<uni-list>
+				<uni-list-item :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +item.name)+'&title=百度百科'"
+				 :title="item.name" :note="'相似度: '+ item.probability" showArrow clickable :key="index" v-for="(item, index) in result">
+					<view class="list-footer" slot='footer'>
+						<uni-tag circle :text="typeof item.calorie==='undefined'? '暂无数据':item.calorie+' 卡路里'"></uni-tag>
+					</view>
+				</uni-list-item>
+			</uni-list>
 		</view>
-		<uni-section title='识别结果' type='line'></uni-section>
-		<uni-list>
-			<uni-list-item :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +item.name)+'&title=百度百科'" :title="item.name" :note="'相似度: '+ item.probability" showArrow clickable :key="index" v-for="(item, index) in result">
-				<view class="list-footer" slot='footer'>
-					<uni-tag circle :text="typeof item.calorie==='undefined'? '暂无数据':item.calorie+' 卡路里'"></uni-tag>
-				</view>
-			</uni-list-item>
-		</uni-list>
+		<image class="image" @click="chooseImage" :src="tempFilePath" mode="widthFix"></image>
 	</view>
 </template>
 
@@ -61,12 +62,15 @@
 										'Content-Type': 'application/x-www-form-urlencoded'
 									},
 									success: res => {
-										res.data.result[0].name == '非菜'?uni.showToast({icon:'none',title:'不是菜品'}) :this.result = res.data.result
+										res.data.result[0].name == '非菜' ? uni.showToast({
+											icon: 'none',
+											title: '不是菜品'
+										}) : this.result = res.data.result
 									},
 									fail: () => {
 										uni.showToast({
-											icon:'none',
-											title:'网络连接失败'
+											icon: 'none',
+											title: '网络连接失败'
 										})
 									},
 									complete: () => {
@@ -77,7 +81,7 @@
 						}).catch(error => {
 							console.log(error)
 							uni.redirectTo({
-								url:"../index/index"
+								url: "../index/index"
 							})
 						})
 					}
@@ -86,7 +90,3 @@
 		}
 	}
 </script>
-
-<style>
-
-</style>

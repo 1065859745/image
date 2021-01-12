@@ -1,15 +1,15 @@
 <template>
 	<view class="container">
-		<view class="image">
-			<image @click="chooseImage" :src="tempFilePath" mode="aspectFit"></image>
+		<view class="resultList">
+			<uni-section title="识别结果" type="line"></uni-section>
+			<uni-list>
+				<uni-list-item showArrow clickable :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +(item.keyword||item.name))+'&title=百度百科'"
+				 :note="'相似度: '+(item.score||item.probability)" :title="item.keyword||item.name" v-for="(item, index) in result"
+				 :key="index">
+				</uni-list-item>
+			</uni-list>
 		</view>
-		<uni-section title="识别结果" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item showArrow clickable :to="'../detail/detail?url=' + encodeURIComponent('https://baike.baidu.com/item/' +(item.keyword||item.name))+'&title=百度百科'"
-			 :note="'相似度: '+(item.score||item.probability)" :title="item.keyword||item.name" v-for="(item, index) in result"
-			 :key="index">
-			</uni-list-item>
-		</uni-list>
+		<image class="image" @click="chooseImage" :src="tempFilePath" mode="widthFix"></image>
 	</view>
 </template>
 
@@ -55,7 +55,7 @@
 					mask: true,
 					success: () => {
 						pathToBase64(this.tempFilePath).then(base64 => {
-							base64Compress(base64, newBase64=>{
+							base64Compress(base64, newBase64 => {
 								uni.request({
 									url: url + '/rest/2.0' + this.apiUrl + "?access_token=" + getApp().globalData.access_token,
 									data: {
@@ -69,7 +69,8 @@
 										res.data.error_msg || /非/.test(res.data.result[0].name) ? uni.showToast({
 											title: res.data.error_msg || res.data.result[0].name,
 											icon: 'none'
-										}) : this.result = res.data.result.sort((a, b) => (a.score ? (b.score - a.score) : (b.probability - a
+										}) : this.result = res.data.result.sort((a, b) => (a.score ? (b.score - a.score) : (b.probability -
+											a
 											.probability)))
 									},
 									fail: () => {
@@ -85,7 +86,7 @@
 							})
 						}).catch(error => {
 							uni.redirectTo({
-								url:"../index/index"
+								url: "../index/index"
 							})
 						})
 					}
@@ -94,7 +95,3 @@
 		}
 	}
 </script>
-
-<style>
-
-</style>

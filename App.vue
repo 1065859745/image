@@ -2,7 +2,7 @@
 	export default {
 		globalData: {
 			access_token: '',
-			proxy_server:'',
+			proxy_server: '',
 		},
 		onLaunch: function() {
 			// 添加百度SK、AK
@@ -10,8 +10,9 @@
 			const APIKey = ''
 			// 获取access_token
 			// 安卓可以直接发起请求获取， h5平台需要另起一个反向代理服务解决跨域问题
-			let address = typeof plus === 'object'? 'https://aip.baidubce.com' : getApp().globalData.proxy_server
-			let url = address + '/oauth/2.0/token?grant_type=client_credentials&client_id=' + APIKey + '&client_secret=' + SecretKey
+			let address = typeof plus === 'object' ? 'https://aip.baidubce.com' : getApp().globalData.proxy_server
+			let url = address + '/oauth/2.0/token?grant_type=client_credentials&client_id=' + APIKey + '&client_secret=' +
+				SecretKey
 			uni.request({
 				url: url,
 				success: res => {
@@ -35,26 +36,32 @@
 	}
 
 	/* #endif */
-	image {
-		height: 100%;
-	}
-	.container {
-		padding: 8px 0;
-	}
-	
+
 	.image {
-		height: 38vh;
-		display: flex;
-		justify-content: center;
+		flex: 2;
+		margin-top: 10px;
+		min-width: 38vh;
 	}
+
+	.container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.resultList {
+		min-width: 45vh;
+		flex: 3;
+	}
+
 	.list-footer {
 		display: flex;
 		align-items: center;
 	}
+
 	.icon-loading {
 		animation: spin 1s linear infinite;
 	}
-	
+
 	@keyframes spin {
 		100% {
 			transform: rotate(360deg)

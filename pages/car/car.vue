@@ -1,18 +1,18 @@
 <template>
 	<view class="container">
-		<view class="image">
-			<image @click="chooseImage" :src="tempFilePath" mode="aspectFit"></image>
+		<view class="resultList" style="min-width: 350px;">
+			<uni-section title="识别结果" type="line"></uni-section>
+			<uni-list>
+				<uni-list-item clickable :to="getDetailUrl(item.name,series_id[index])" showArrow :id="index" :title="item.name+item.year"
+				 :note="'相似度: '+item.score.toFixed(5)" v-for="(item, index) in result" :key="index">
+					<view class="list-footer" slot='footer'>
+						<view v-show="!price[index]" class="iconfont icon-loading"></view>
+						<uni-tag circle :text="price[index]"></uni-tag>
+					</view>
+				</uni-list-item>
+			</uni-list>
 		</view>
-		<uni-section title="识别结果" type="line"></uni-section>
-		<uni-list>
-			<uni-list-item clickable :to="getDetailUrl(item.name,series_id[index])" showArrow :id="index" :title="item.name+item.year"
-			 :note="'相似度: '+item.score.toFixed(5)" v-for="(item, index) in result" :key="index">
-				<view class="list-footer" slot='footer'>
-					<view v-show="!price[index]" class="iconfont icon-loading"></view>
-					<uni-tag circle :text="price[index]"></uni-tag>
-				</view>
-			</uni-list-item>
-		</uni-list>
+		<image class="image" @click="chooseImage" :src="tempFilePath" mode="widthFix"></image>
 	</view>
 </template>
 
@@ -30,6 +30,7 @@
 				series_id: [],
 				tempFilePath: '',
 				result: [],
+				isPhone: false,
 			}
 		},
 
@@ -39,13 +40,18 @@
 			})
 			this.tempFilePath = option.tempFilePath
 			this.request()
+			uni.getSystemInfo({
+				success: (res) => {
+					this.isPhone = res.windowHeight > res.windowWidth
+				}
+			})
 		},
 		methods: {
 			getDetailUrl(name, series_id) {
 				let url = 'https://youjia.baidu.com'
-				url += (getApp().globalData.isPhone && series_id) ? ('/pages/view/index?name=' + name + '&serid=' + series_id) : (
+				url += (this.isPhone && series_id) ? ('/pages/view/index?name=' + name + '&serid=' + series_id) : (
 					'/view/search?query=' + name)
-				return '../detail/detail?url=' + encodeURIComponent(url)+'&title=有驾'
+				return '../detail/detail?url=' + encodeURIComponent(url) + '&title=有驾'
 			},
 			chooseImage() {
 				uni.chooseImage({
@@ -65,7 +71,7 @@
 					mask: true,
 					success: () => {
 						pathToBase64(this.tempFilePath).then(base64 => {
-							base64Compress(base64, newBase64=> {
+							base64Compress(base64, newBase64 => {
 								uni.request({
 									url: url + '/rest/2.0/image-classify/v1/car?access_token=' + getApp().globalData.access_token,
 									data: {
@@ -122,7 +128,7 @@
 							})
 						}).catch(error => {
 							uni.redirectTo({
-								url:"../index/index"
+								url: "../index/index"
 							})
 						})
 					}
