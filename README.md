@@ -16,7 +16,7 @@ location /rest/ {
   more_set_headers "Access-Control-Allow-Origin:*";
 }
 ```
-需要给nginx添加ngx_headers_more模块，(详情)[https://www.cnblogs.com/kenwar/p/8297725.html]
+需要给nginx添加ngx_headers_more模块，[https://www.cnblogs.com/kenwar/p/8297725.html](详情)
 # Hbuild
 使用Hbuild打开，可以运行、打包此项目
 # 项目预览
