@@ -84,9 +84,9 @@
     },
     "h5" : {
         "router" : {
-            "base" : "",
+            "base" : "/image",
             "mode" : "history"
         },
-        "domain" : "woligiao.top"
+        "domain" : ""
     }
 }
